@@ -10,7 +10,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
 
     final int PLAYER_1 = 1;
     final int PLAYER_2 = 2;
-    boolean gameEnded= false;
+    boolean gameEnded = false;
 
     int player = PLAYER_1;
     TextView playerView;
@@ -23,8 +23,8 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_tic_tac_toe_x);
 
 
-        playerView=(TextView) findViewById(R.id.player);
-        playerView.setText("Player: "+player);
+        playerView = (TextView) findViewById(R.id.player);
+        playerView.setText("Player: " + player);
 
         field[0][0] = (TextView) findViewById(R.id.field00);
         field[0][1] = (TextView) findViewById(R.id.field01);
@@ -67,7 +67,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if(gameEnded==true){
+        if (gameEnded == true) {
             return;
         }
         int num = (Integer) v.getTag();
@@ -76,8 +76,8 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
 
         if (isFree(i, j)) {
             setStatus(i, j, player);
-            if(didWIn(player) == true){
-                gameEnded=true;
+            if (didWIn(player) == true) {
+                gameEnded = true;
                 Toast.makeText(this, "You WIn!", Toast.LENGTH_SHORT).show();
             } else {
                 changePlayer();
@@ -94,7 +94,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         } else {
             player = PLAYER_1;
         }
-        playerView.setText("Player: "+player);
+        playerView.setText("Player: " + player);
     }
 
     boolean isFree(int i, int j) {
@@ -139,6 +139,72 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
                 if (counter == 4) {
                     return true;
                 }
+            }
+        }
+        int counter = 0;
+        for (int i = 0; i < 5; i++) {
+            if (status[i][i] == p) {
+                counter++;
+            }
+            if (counter == 4) {
+                return true;
+            }
+        }
+        counter = 0;
+        int j = 4;
+        for (int i = 0; i < 5; i++) {
+            if (status[i][j] == p) {
+
+                counter++;
+            }
+            j--;
+            if (counter == 4) {
+
+                return true;
+            }
+        }
+        counter = 0;
+        j = 0;
+        for (int i = 1; i <= 4; i++) {
+            if (status[i][j] == p) {
+                counter++;
+            }
+            j++;
+            if (counter == 4) {
+                return true;
+            }
+        }
+        counter = 0;
+        j = 1;
+        for (int i = 0; i < 4; i++) {
+            if (status[i][j] == p) {
+                counter++;
+            }
+            j++;
+            if (counter == 4) {
+                return true;
+            }
+        }
+        counter = 0;
+        j = 3;
+        for (int i = 0; i < 4; i++) {
+            if (status[i][j] == p) {
+                counter++;
+            }
+            j--;
+            if (counter == 4) {
+                return true;
+            }
+        }
+        counter = 0;
+        j=4;
+        for(int i=1;i<5;i++){
+            if(status[i][j]==p){
+                counter++;
+            }
+            j--;
+            if(counter==4){
+                return true;
             }
         }
         return false;
