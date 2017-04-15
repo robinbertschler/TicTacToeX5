@@ -3,6 +3,7 @@ package com.tttx.tictactoextreme;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
     TextView playerView;
     TextView[][] field = new TextView[5][5];
     int[][] status = new int[5][5];
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,14 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         playerView = (TextView) findViewById(R.id.player);
         playerView.setText("Player: " + player);
 
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // button clicked
+                restart();
+            }
+        });
         field[0][0] = (TextView) findViewById(R.id.field00);
         field[0][1] = (TextView) findViewById(R.id.field01);
         field[0][2] = (TextView) findViewById(R.id.field02);
@@ -78,10 +88,9 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             setStatus(i, j, player);
             if (didWIn(player) == true) {
                 gameEnded = true;
-                Toast.makeText(this, "You WIn!", Toast.LENGTH_SHORT).show();
+                playerView.setText("Player: " + player + " You Win");
             } else {
                 changePlayer();
-                Toast.makeText(this, "next player", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(this, "already set", Toast.LENGTH_SHORT).show();
@@ -197,16 +206,28 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             }
         }
         counter = 0;
-        j=4;
-        for(int i=1;i<5;i++){
-            if(status[i][j]==p){
+        j = 4;
+        for (int i = 1; i < 5; i++) {
+            if (status[i][j] == p) {
                 counter++;
             }
             j--;
-            if(counter==4){
+            if (counter == 4) {
                 return true;
             }
         }
         return false;
+    }
+
+    void restart() {
+        gameEnded=false;
+        player = PLAYER_1;
+        playerView.setText("Player 1");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                status[i][j] = 0;
+                field[i][j].setText("");
+            }
+        }
     }
 }
