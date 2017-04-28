@@ -3,6 +3,7 @@ package com.tttx.tictactoextreme;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
 
 
         playerView = (TextView) findViewById(R.id.player);
-        playerView.setText("Player: " + player);
+        playerView.setText("X");
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -88,22 +89,24 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             setStatus(i, j, player);
             if (didWIn(player) == true) {
                 gameEnded = true;
-                playerView.setText("Player: " + player + " You Win");
+                playerView.setText(xo + " You Win");
             } else {
                 changePlayer();
             }
-        } else {
-            Toast.makeText(this, "already set", Toast.LENGTH_SHORT).show();
         }
     }
+
+    String xo="";
 
     void changePlayer() {
         if (player == PLAYER_1) {
             player = PLAYER_2;
+            xo="O";
         } else {
             player = PLAYER_1;
+            xo="X";
         }
-        playerView.setText("Player: " + player);
+        playerView.setText(xo);
     }
 
     boolean isFree(int i, int j) {
@@ -220,9 +223,9 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
     }
 
     void restart() {
-        gameEnded=false;
+        gameEnded = false;
         player = PLAYER_1;
-        playerView.setText("Player 1");
+        playerView.setText("X");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 status[i][j] = 0;
