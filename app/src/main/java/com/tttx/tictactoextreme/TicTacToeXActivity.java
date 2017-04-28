@@ -15,7 +15,11 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
     boolean gameEnded = false;
 
     int player = PLAYER_1;
+    TextView WinnerVIew;
+    TextView OView;
+    TextView XView;
     TextView playerView;
+    TextView player2View;
     TextView[][] field = new TextView[5][5];
     int[][] status = new int[5][5];
     Button button;
@@ -25,9 +29,14 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe_x);
 
-
+        WinnerVIew=(TextView) findViewById(R.id.Winner);
+        WinnerVIew.setVisibility(TextView.GONE);
+        XView=(TextView) findViewById(R.id.X);
+        OView=(TextView) findViewById(R.id.O);
+        player2View=(TextView) findViewById(R.id.player2);
+        player2View.setVisibility(TextView.GONE);
         playerView = (TextView) findViewById(R.id.player);
-        playerView.setText("X");
+        playerView.setVisibility(TextView.VISIBLE);
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +98,10 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             setStatus(i, j, player);
             if (didWIn(player) == true) {
                 gameEnded = true;
-                playerView.setText(xo + " You Win");
+                WinnerVIew.setVisibility(TextView.VISIBLE);
+                WinnerVIew.setText(xo+" Won");
+                XView.setVisibility(TextView.GONE);
+                OView.setVisibility(TextView.GONE);
             } else {
                 changePlayer();
             }
@@ -101,12 +113,16 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
     void changePlayer() {
         if (player == PLAYER_1) {
             player = PLAYER_2;
+            playerView.setVisibility(TextView.GONE);
+            player2View.setVisibility(TextView.VISIBLE);
             xo="O";
         } else {
             player = PLAYER_1;
+            player2View.setVisibility(TextView.GONE);
+            playerView.setVisibility(TextView.VISIBLE);
             xo="X";
         }
-        playerView.setText(xo);
+
     }
 
     boolean isFree(int i, int j) {
@@ -226,6 +242,12 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         gameEnded = false;
         player = PLAYER_1;
         playerView.setText("X");
+        player2View.setText("O");
+        WinnerVIew.setVisibility(TextView.GONE);
+        playerView.setVisibility(TextView.VISIBLE);
+        player2View.setVisibility(TextView.GONE);
+        XView.setVisibility(TextView.VISIBLE);
+        OView.setVisibility(TextView.VISIBLE);
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 status[i][j] = 0;
