@@ -47,55 +47,69 @@
         android:textSize="14dp" />
 
     <TextView
-        android:id="@+id/X"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button"
-       android:layout_above="@+id/grid"
-        android:layout_marginBottom="50dp"
-        android:text="X"
-        android:textSize="26dp" />
-
-    <TextView
-        android:id="@+id/O"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button"
-       android:layout_above="@+id/grid"
-        android:layout_marginBottom="50dp"
-        android:text="O"
-        android:textSize="26dp"/>
-
-    <TextView
         android:id="@+id/Winner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/playerondicator1"
         android:layout_centerHorizontal="true"
-        android:textSize="26dp"
-        android:visibility="gone"
-        android:layout_alignBottom="@+id/grid"
-        android:layout_margin="400dp" />
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:id="@+id/playerondicator1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/grid"
+        android:layout_alignRight="@id/button"
+        android:layout_centerInParent="true"
+        android:layout_margin="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_alignEnd="@+id/X"
+            android:layout_alignStart="@+id/X"
+            android:layout_below="@+id/X"
+            android:background="#555555"
+             />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/player"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_alignEnd="@+id/X"
-        android:layout_alignStart="@+id/X"
-        android:layout_below="@+id/X"
-        android:background="#555555"
-        android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/playerondicator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/grid"
+        android:layout_alignLeft="@id/button"
+        android:layout_centerInParent="true"
+        android:layout_margin="40dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/player2"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_alignEnd="@+id/O"
-        android:layout_alignStart="@+id/O"
-        android:layout_below="@+id/O"
-        android:background="#555555"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/O"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/player2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_alignEnd="@+id/O"
+            android:layout_alignStart="@+id/O"
+            android:layout_below="@+id/O"
+            android:background="#555555"
+            android:visibility="visible" />
+    </LinearLayout>
 
 
     <LinearLayout

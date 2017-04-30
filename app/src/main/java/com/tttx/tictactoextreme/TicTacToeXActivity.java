@@ -100,8 +100,10 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
                 gameEnded = true;
                 WinnerVIew.setVisibility(TextView.VISIBLE);
                 WinnerVIew.setText(xo+" Won");
-                XView.setVisibility(TextView.GONE);
-                OView.setVisibility(TextView.GONE);
+                XView.setVisibility(TextView.INVISIBLE);
+                OView.setVisibility(TextView.INVISIBLE);
+                player2View.setVisibility(TextView.INVISIBLE);
+                playerView.setVisibility(TextView.INVISIBLE);
             } else {
                 changePlayer();
             }
