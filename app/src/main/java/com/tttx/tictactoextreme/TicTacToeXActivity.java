@@ -1,6 +1,7 @@
 package com.tttx.tictactoextreme;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,12 +11,14 @@ import android.widget.Toast;
 
 public class TicTacToeXActivity extends Activity implements View.OnClickListener {
 
+
     final int PLAYER_1 = 1;
     final int PLAYER_2 = 2;
     boolean gameEnded = false;
 
     int player = PLAYER_1;
     TextView WinnerVIew;
+    TextView Winner2View;
     TextView OView;
     TextView XView;
     TextView playerView;
@@ -27,10 +30,12 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_tic_tac_toe_x);
-
         WinnerVIew=(TextView) findViewById(R.id.Winner);
         WinnerVIew.setVisibility(TextView.GONE);
+        Winner2View=(TextView) findViewById(R.id.Winner2);
+        Winner2View.setVisibility(TextView.GONE);
         XView=(TextView) findViewById(R.id.X);
         OView=(TextView) findViewById(R.id.O);
         player2View=(TextView) findViewById(R.id.player2);
@@ -99,7 +104,9 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             if (didWIn(player) == true) {
                 gameEnded = true;
                 WinnerVIew.setVisibility(TextView.VISIBLE);
-                WinnerVIew.setText(xo+" Won");
+                WinnerVIew.setText(xo);
+                Winner2View.setVisibility(TextView.VISIBLE);
+                Winner2View.setText("WINNER");
                 XView.setVisibility(TextView.INVISIBLE);
                 OView.setVisibility(TextView.INVISIBLE);
                 player2View.setVisibility(TextView.INVISIBLE);
@@ -122,6 +129,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
             player = PLAYER_1;
             player2View.setVisibility(TextView.GONE);
             playerView.setVisibility(TextView.VISIBLE);
+
             xo="X";
         }
 
@@ -141,6 +149,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         String text = "";
         if (p == PLAYER_1) {
             text = "X";
+
         } else {
             text = "O";
         }
@@ -246,6 +255,7 @@ public class TicTacToeXActivity extends Activity implements View.OnClickListener
         playerView.setText("X");
         player2View.setText("O");
         WinnerVIew.setVisibility(TextView.GONE);
+        Winner2View.setVisibility(TextView.GONE);
         playerView.setVisibility(TextView.VISIBLE);
         player2View.setVisibility(TextView.GONE);
         XView.setVisibility(TextView.VISIBLE);
